@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 1212236686}
   - component: {fileID: 1212236685}
   m_Layer: 0
-  m_Name: Enemy Spawner
+  m_Name: Enemy Spawner (yellow)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,10 +668,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0968965b465ae48aed8806cc40d0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyObject: {fileID: 3202589115164263387, guid: 4a594257e5852f147914323f3d3c729a, type: 3}
-  spawnCooldown: 2
+  enemyObjects:
+  - {fileID: 3202589115164263387, guid: 4a594257e5852f147914323f3d3c729a, type: 3}
+  - {fileID: 6569169877815970849, guid: 5d0690e8dba79f744aa0543e99fb6d1f, type: 3}
+  spawnCooldown: 0.7
   minPosition: -4.24
   maxPosition: 4.24
+  minEnemySpeed: 2
+  maxEnemySpeed: 12
 --- !u!4 &1212236686
 Transform:
   m_ObjectHideFlags: 0
