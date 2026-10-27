@@ -4,12 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float jumpPower;
+    // make a script for the enemy that moves right at a constant speed
     public float moveSpeed;
     private Rigidbody2D rb;
-
-    private float jumpStatus;
-    private float movement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,33 +14,21 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (jumpStatus > float.Epsilon)
-        {
-            rb.AddForce(Vector2.up * jumpPower * Time.fixedDeltaTime, ForceMode2D.Force);
-        }
-        else
-        {
-            // do nothing!
-        }
-        rb.linearVelocityX = movement * moveSpeed * Time.fixedDeltaTime;
 
-        //rb.MovePosition(transform.position + Vector3.right * Time.fixedDeltaTime);
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy")) {
+            gameObject.SetActive(false);
+        }
+        else if (other.CompareTag("Treat"))
+        {
+            Debug.Log("yay!!!");
+        }
     }
 
 
-    // instead of a jump, make it a jetpack
-
-    public void OnJetpack(InputValue input)
+    public void OnMove(InputValue input)
     {
-        jumpStatus = input.Get<float>();
-    }
-
-
-    public void OnMovement(InputValue input)
-    {
-        movement = input.Get<float>();
+        rb.linearVelocity = input.Get<Vector2>() * moveSpeed;
     }
 }
